@@ -5,43 +5,71 @@ package model;
  * Een persoon die betrokken is bij ons bedrijf.
  */
 public class Persoon {
-    private static final String DEFAULT_NAAM = "Onbekend";
-    private static final String DEFAULT_WOONPLAATS = "Onbekend";
-    private static final int DEFAULT_MAANDSALARIS = 0;
+    private static final double GRENSWAARDE_BONUS = 4500;
     private static final int MAANDEN_PER_JAAR = 12;
 
-    public static int aantalPersonen = 0;
+    private static final String DEFAULT_NAAM = "Onbekend";
+    private static final String DEFAULT_WOONPLAATS = "Onbekend";
+    private static final double DEFAULT_MAANDSALARIS = 0.0;
 
-    public int personeelsNummer;
-    public String naam;
-    public String woonplaats;
-    public double maandsalaris;
+    private static int aantalPersonen = 0;
+
+    private int personeelsNummer;
+    private String naam;
+    private String woonplaats;
+    private double maandsalaris;
 
     public Persoon(String naam, String woonplaats, double maandsalaris) {
         this.naam = naam;
         this.woonplaats = woonplaats;
-        this.maandsalaris = maandsalaris;
+        setMaandsalaris(maandsalaris);
 
         this.personeelsNummer = ++aantalPersonen;
     }
 
     public Persoon(String naam) {
-        this.naam = naam;
-        this.woonplaats = DEFAULT_WOONPLAATS;
-        this.maandsalaris = DEFAULT_MAANDSALARIS;
-
-        this.personeelsNummer = ++aantalPersonen;
+        this(naam, DEFAULT_WOONPLAATS, DEFAULT_MAANDSALARIS);
     }
 
     public Persoon() {
-        this.naam = DEFAULT_NAAM;
-        this.woonplaats = DEFAULT_WOONPLAATS;
-        this.maandsalaris = DEFAULT_MAANDSALARIS;
-
-        this.personeelsNummer = ++aantalPersonen;
+        this(DEFAULT_NAAM);
     }
 
     public double berekenJaarinkomen() {
         return MAANDEN_PER_JAAR * maandsalaris;
+    }
+
+    public boolean heeftRechtOpBonus() {
+        return maandsalaris >= GRENSWAARDE_BONUS;
+    }
+
+    public static int getAantalPersonen() {
+        return aantalPersonen;
+    }
+
+    public int getPersoneelsNummer() {
+        return personeelsNummer;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public double getMaandsalaris() {
+        return maandsalaris;
+    }
+
+    private void setMaandsalaris(double maandsalaris) {
+        if (maandsalaris < 0) {
+            System.err.printf("%.2f is een ongeldig maandsalaris, maandsalaris wordt op %.2f gezet.",
+                    maandsalaris, DEFAULT_MAANDSALARIS);
+            maandsalaris = DEFAULT_MAANDSALARIS;
+        }
+
+        this.maandsalaris = maandsalaris;
     }
 }
