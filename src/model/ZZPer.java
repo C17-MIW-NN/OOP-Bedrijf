@@ -4,7 +4,7 @@ package model;
  * @author Vincent Velthuizen
  * Iemand die op oproep basis voor ons bedrijf werkt.
  */
-public class ZZPer extends Persoon {
+public class ZZPer extends Persoon implements Oproepbaar {
     private static final int DEFAULT_UREN_GEWERKT = 0;
     private double uurtarief;
     private int urenGewerkt;
@@ -15,6 +15,7 @@ public class ZZPer extends Persoon {
         this.urenGewerkt = DEFAULT_UREN_GEWERKT;
     }
 
+    @Override
     public void huurIn(int uren) {
         urenGewerkt += uren;
     }

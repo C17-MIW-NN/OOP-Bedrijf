@@ -1,11 +1,9 @@
 package controller;
 
-import model.Afdeling;
-import model.Persoon;
-import model.Werknemer;
-import model.ZZPer;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Vincent Velthuizen
@@ -30,17 +28,33 @@ public class BedrijfLauncher {
         personen.add(new ZZPer("Ronald", "Zaandam", afdelingen[0], 80.00));
         personen.add(new ZZPer("Jannie", "Utrecht", afdelingen[0], 60.00));
         personen.add(new ZZPer("Anne", "Zwolle", afdelingen[0], 40.00));
+        personen.add(new Vrijwilliger("Ambi", "Amsterdam", afdelingen[0]));
+        personen.add(new Vrijwilliger("Naledi", "Gaborone", afdelingen[1]));
+        personen.add(new Vrijwilliger("Ceren", "Istanboel", afdelingen[2]));
+        personen.add(new Vrijwilliger("Haining", "Shaoxing", afdelingen[3]));
 
         for (Persoon persoon : personen) {
             if (persoon instanceof ZZPer) {
-                ((ZZPer) persoon).huurIn(320);
+                ((ZZPer) persoon).huurIn(160);
+            }
+
+            if (persoon instanceof Oproepbaar) {
+                ((Oproepbaar) persoon).huurIn(160);
             }
         }
 
+        Collections.sort(personen);
+
         System.out.println();
         for (Persoon persoon : personen) {
+            System.out.println(persoon);
             toonJaarinkomen(persoon);
         }
+
+        ArrayList<Integer> getallen = new ArrayList<>();
+        getallen.add(3);
+
+        int getal = (int) getallen.get(0);
     }
 
     public static void toonJaarinkomen(Persoon persoon) {
