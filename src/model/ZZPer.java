@@ -4,12 +4,12 @@ package model;
  * @author Vincent Velthuizen
  * Iemand die op oproep basis voor ons bedrijf werkt.
  */
-public class ZZper extends Persoon {
+public class ZZPer extends Persoon {
     private static final int DEFAULT_UREN_GEWERKT = 0;
     private double uurtarief;
     private int urenGewerkt;
 
-    public ZZper(String naam, String woonplaats, Afdeling afdeling, double uurtarief) {
+    public ZZPer(String naam, String woonplaats, Afdeling afdeling, double uurtarief) {
         super(naam, woonplaats, afdeling);
         this.uurtarief = uurtarief;
         this.urenGewerkt = DEFAULT_UREN_GEWERKT;
