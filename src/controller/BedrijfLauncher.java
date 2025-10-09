@@ -1,5 +1,7 @@
 package controller;
 
+import database.AfdelingDAO;
+import database.DBaccess;
 import model.*;
 
 import java.io.File;
@@ -16,11 +18,17 @@ import java.util.Scanner;
 public class BedrijfLauncher {
 
     public static void main(String[] args) {
-        ArrayList<Afdeling> afdelingen = leesAfdelingenIn("resources/Afdelingen.txt");
-        ArrayList<Persoon> personen = leesPersonenIn("resources/Personen.csv", afdelingen);
+        DBaccess dBaccess = new DBaccess("Bedrijf", "userBedrijf", "userBedrijfPW");
+        AfdelingDAO afdelingDAO = new AfdelingDAO(dBaccess);
 
-        printWerknemersPerAfdeling("resources/PersonenPerAfdeling.txt", afdelingen, personen);
+//        afdelingDAO.slaAfdelingOp(new Afdeling("HR", "Hilversum"));
+//        System.out.println(afdelingDAO.geefAfdelingen());
+
+        for (Afdeling afdeling : afdelingDAO.geefAfdelingenMetPlaats("Hilversum")) {
+            System.out.println(afdeling);
+        }
     }
+
 
     private static void printWerknemersPerAfdeling(String bestandspad,
                                                    ArrayList<Afdeling> afdelingen,
