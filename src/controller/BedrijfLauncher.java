@@ -2,6 +2,7 @@ package controller;
 
 import database.AfdelingDAO;
 import database.DBaccess;
+import database.WerknemerDAO;
 import model.*;
 
 import java.io.File;
@@ -27,6 +28,12 @@ public class BedrijfLauncher {
         for (Afdeling afdeling : afdelingDAO.geefAfdelingenMetPlaats("Hilversum")) {
             System.out.println(afdeling);
         }
+
+        WerknemerDAO werknemerDAO = new WerknemerDAO(dBaccess);
+        werknemerDAO.slaOp(new Werknemer("Jan",
+                "Eelde",
+                new Afdeling("HR", "Hilversum"),
+                5000));
     }
 
 

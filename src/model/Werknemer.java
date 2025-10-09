@@ -46,6 +46,10 @@ public class Werknemer extends Persoon {
                 heeftRechtOpBonus() ? "met" : "zonder");
     }
 
+    public double getMaandsalaris() {
+        return maandsalaris;
+    }
+
     private void setMaandsalaris(double maandsalaris) {
         if (maandsalaris < 0) {
             throw new IllegalArgumentException("Het maandsalaris mag niet negatief zijn.");
